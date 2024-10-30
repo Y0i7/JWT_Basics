@@ -10,7 +10,7 @@ public class JWTBase64Practice {
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public static byte[] createBinaryToken(String username) {
-        // Genera el token en formato Base64
+        
         String token = Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
@@ -18,16 +18,16 @@ public class JWTBase64Practice {
                 .signWith(SECRET_KEY)
                 .compact();
 
-        // Convierte el token Base64 a binario
+        
         return token.getBytes();
     }
 
     public static Claims decodeBinaryToken(byte[] binaryToken) {
         try {
-            // Convierte el token binario de vuelta a Base64
+            
             String tokenString = new String(binaryToken);
 
-            // Decodifica y valida el token
+            
             return Jwts.parser()
                     .setSigningKey(SECRET_KEY)
                     .build()
